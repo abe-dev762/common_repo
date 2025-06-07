@@ -1,29 +1,50 @@
-const employees = [
-    {id: 1, name: 'John Doe' , age: 30, department: 'IT', salary: 50000 },
-    {id: 2, name: 'Alice Smith', age: 28, department: 'HR', salary: 45000},
-    {id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000},
-];
-
-const totalEmployees = employees.map((employees, index) => `<p>${employees.id}: ${employees.name}: ${employees.age} - ${employees.department} - ${employees.salary}</p>`).join('');
-document.getElementById('employeesDetails').innerHTML = totalEmployees;
-
-function calculateTotalSalaries() {
-    const totalSalaries = employees.reduce((acc, employees) => acc + employees.salary, 0);
-    alert(`Total Salaries: $${totalSalaries}`);
+function showBook() {
+    const booksDiv = book.map((book, index) => `<h1>book Number: ${index + 1}</h1>
+    <p><strong>Book Name:</strong>${book.authorName}</p>
+     <p><strong>Author Name:</strong> ${book.authorName}</p>
+        <p><strong>Book Description:</strong> ${book.bookDescription}</p>
+        <p><strong>No. of Pages:</strong> ${book.pagesNumber} page(s)</p>
+        <button onclick="editbook(${index})">Edit</button>`
+    );
+        document.getElementById('books').innerHTML = booksDiv.join('');
 }
 
-function displayHrEmployees() {
-    const hrEmpoloyees = employees.filter(employee => employees.department == 'HR');
-    const hrEmployeesDisplay = hrEmpoloyees.map((employee, index) => `<p>${employees.id}: ${employees.name}: ${employees.age} - ${employees.department} - $${employees.salary}</p>`).join('');
-    document.getElementById('employeesDetails').innerHTML = hrEmployeesDisplay;
+function editBook(index) {
+    const book = book[index];
+    document.getElementById('bookName').value = book.name;
+    document.getElementById('authorName').value = book.authorName;
+    document.getElementById('bookDescription').value = book.bookDescription;
+    document.getElementById('pagesNumber').value = book.pagesNumber;
+    book.splice(index, 1);
+    showBook();
 }
 
-function findEmployeeById(employeeId) {
-      const foundEmployee = employees.find(employee => employee.id === employeeId);
-      if (foundEmployee) {
-      document.getElementById('employeesDetails').innerHTML =`<p>${foundEmployee.id}: ${foundEmployee.name}: ${foundEmployee.name} - ${foundEmployee.department} - $${foundEmployee.salary}</p>`;
-      }
-      else{
-        document.getElementById('employeesDetails').innerHTML = 'no employee has been found with this ID';
-       }
-   }
+function clearInputs() {
+         document.getElementById('bookName').value = '';
+    document.getElementById('authorName').value = '';
+    document.getElementById('bookDescription').value = '';
+    document.getElementById('pagesNumber').value = '';
+}
+
+
+let book = [];
+
+function addBook() {
+    const bookName = document.getElementById('bookName').value;
+    const authorName = document.getElementById('authorName').value;
+    const bookDescription = document.getElementById('bookDescription').value;
+    const pagesNumber = document.getElementById('pagesNumber').value;
+
+if (bookName && authorName && bookDescription && !isNaN(pagesNumber)) {
+    const book = {
+       name: bookName,
+       authorName: authorName,
+       bookDescription: bookDescription,
+       pagesNumber: pagesNumber
+    };
+    book.push(book);
+    showBook();
+} else {
+    alert('Please fill the fields correctly');
+}
+}
