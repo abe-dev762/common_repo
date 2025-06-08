@@ -1,50 +1,21 @@
-function showBook() {
-    const booksDiv = book.map((book, index) => `<h1>book Number: ${index + 1}</h1>
-    <p><strong>Book Name:</strong>${book.authorName}</p>
-     <p><strong>Author Name:</strong> ${book.authorName}</p>
-        <p><strong>Book Description:</strong> ${book.bookDescription}</p>
-        <p><strong>No. of Pages:</strong> ${book.pagesNumber} page(s)</p>
-        <button onclick="editbook(${index})">Edit</button>`
-    );
-        document.getElementById('books').innerHTML = booksDiv.join('');
+function performOperation() {
+    let num1 = parseInt(document.getElementById('input1').value);
+    let num2 = parseInt(document.getElementById('input2').value);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+        let result = multiply(num1, num2);
+        displayResult(result);
+    } else {
+        displayResult('please enter valid number');
+    }
 }
 
-function editBook(index) {
-    const book = book[index];
-    document.getElementById('bookName').value = book.name;
-    document.getElementById('authorName').value = book.authorName;
-    document.getElementById('bookDescription').value = book.bookDescription;
-    document.getElementById('pagesNumber').value = book.pagesNumber;
-    book.splice(index, 1);
-    showBook();
+function multiply(a, b) {
+    debugger;
+    return a * b;
 }
 
-function clearInputs() {
-         document.getElementById('bookName').value = '';
-    document.getElementById('authorName').value = '';
-    document.getElementById('bookDescription').value = '';
-    document.getElementById('pagesNumber').value = '';
-}
-
-
-let book = [];
-
-function addBook() {
-    const bookName = document.getElementById('bookName').value;
-    const authorName = document.getElementById('authorName').value;
-    const bookDescription = document.getElementById('bookDescription').value;
-    const pagesNumber = document.getElementById('pagesNumber').value;
-
-if (bookName && authorName && bookDescription && !isNaN(pagesNumber)) {
-    const book = {
-       name: bookName,
-       authorName: authorName,
-       bookDescription: bookDescription,
-       pagesNumber: pagesNumber
-    };
-    book.push(book);
-    showBook();
-} else {
-    alert('Please fill the fields correctly');
-}
+function displayResult(result) {
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `The result is: ${result}`;
 }
