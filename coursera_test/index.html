@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
+    <!DOCTYPE html>
+    <html lang="en">
 <head>
+    <title>ToDo List</title>
     <meta charset="UTF-8">
-    <title>Debugging Example</title>
+    <meta name="viewport" content="witdh=device-width, initial-scale: 1.0">
 </head>
-
 <body>
-    <h1>Debugging Example</h1>
-    <label for="input1">Enter Number 1:</label>
-    <input type="number" id="input1"><br><br>
-    <label for="input2">Enter Number 2:</label>
-    <input type="number" id="input2"><br><br>
-    <button onclick="performOperation()">Perform Operation</button>
-    <p id="result"></p>
-    <script src="index.js"></script>
-</body>
+    <h1>ToDo List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <button id="addTaskBtn">Add Task</button>
 
-</html>
+    <!-- <input type="text" id="searchInput" placeholder="Search..."> -->
+    <ul id="taskList">
+        <!-- Tasks will be displayed here -->
+    </ul>
+
+    <button id="clearCompletedBtn">Clear Completed</button>
+    <script src="index.js"></script>
+    </body>
+    </html>

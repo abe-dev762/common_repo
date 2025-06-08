@@ -1,21 +1,42 @@
-function performOperation() {
-    let num1 = parseInt(document.getElementById('input1').value);
-    let num2 = parseInt(document.getElementById('input2').value);
 
-    if (!isNaN(num1) && !isNaN(num2)) {
-        let result = multiply(num1, num2);
-        displayResult(result);
-    } else {
-        displayResult('please enter valid number');
+
+const taskInput = document.getElementById('taskInput');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskList = document.getElementById('taskList');
+const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+
+let tasks = [];
+
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+        tasks.push({text: taskText});
+        taskInput.value = "";
+        displayTask();
     }
 }
 
-function multiply(a, b) {
-    debugger;
-    return a * b;
+function displayTask() {
+    taskList.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const li = createElement("li");
+        li.innerHTML = `<input type="checkbox" id="task-${index} ${task.completed ? "checked" : ""}>
+        <label for="task-${index}>${taskText}</label>`;
+        li.querySelector("input").addEventListener("change", () => toggleTask(index));
+        taskList,appendChild(li);
+
+    });
 }
 
-function displayResult(result) {
-    const resultElement = document.getElementById('result');
-    resultElement.textContent = `The result is: ${result}`;
+function toggleTask() {
+    tasks[index].completed = !task[index].completed;
+    displayTask();
 }
+
+function clearCompletedTasks() {
+    tasks = tasks.filter(task => !task.completed);
+    displayTask();
+}
+
+addTaskBtn.addEventListener("click", addTask);
+clearCompletedBtn.addEventListener("click", clearCompletedTasks);
